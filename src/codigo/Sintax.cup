@@ -1,0 +1,31 @@
+package codigo;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal Inicio,Nombre,Mesa,Hombre,Mujer,Fin,Error;
+
+non terminal INICIO, GENERO, LISTAINVITADO;
+
+start with INICIO;
+
+INICIO ::= Inicio LISTAINVITADO Fin; 
+
+LISTAINVITADO ::=  Nombre Mesa GENERO LISTAINVITADO
+                    | ;
+
+GENERO ::=  Hombre 
+            |Mujer;
+
